@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 const BOTANICAL_IMG = 'https://media.base44.com/images/public/6a3ceb81f16bfca94f3c8790/6137ae0e4_generated_image.png';
 
 const CATEGORY_LABELS = {
+  knowledge: '知识库',
+  research: '科研文献',
   knowledge_base: '知识库',
   scientific_literature: '科研文献',
   whitepaper: '技术白皮书',
@@ -36,7 +38,15 @@ const DEFAULT_ARTICLES = [
 ];
 
 export default function KnowledgeBase({ articles, loading }) {
-  const displayArticles = articles && articles.length > 0 ? articles.slice(0, 3) : DEFAULT_ARTICLES;
+  // Map backend field names, fall back to defaults
+  const displayArticles = Array.isArray(articles) && articles.length > 0
+    ? articles.slice(0, 3).map(a => ({
+        ...a,
+        category: a.category || 'knowledge',
+        author: a.author || '',
+        publish_date: a.publish_date || a.published_at ? new Date(a.published_at).toLocaleDateString('zh-CN') : '',
+      }))
+    : DEFAULT_ARTICLES;
 
   return (
     <section id="knowledge" className="relative py-32 md:py-40" style={{ background: '#FDFBF7' }}>

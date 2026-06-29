@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: ./backend
+    container_name: gap-club-backend
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"     # 只监听本地，Nginx 通过反向代理访问
+    volumes:
+      - ./backend:/app
+      - ./logs:/app/logs
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - gapclub
+
+  frontend:
+    build: ./frontend01
+    container_name: gap-club-frontend
+    restart: always
+    ports:
+      - "127.0.0.1:3000:80"       # 只监听本地，Nginx 反向代理到前端
+    depends_on:
+      - backend
+    networks:
+      - gapclub
+
+networks:
+  gapclub:
+    driver: bridge

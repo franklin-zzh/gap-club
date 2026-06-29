@@ -1,0 +1,22 @@
+# 排除 Python 虚拟环境
+venv/
+.venv/
+env/
+
+# 排除 Python 编译缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 排除编辑器和系统临时文件
+.vscode/
+.idea/
+.DS_Store
+.git
+.gitignore
+
+# 排除日志和临时数据
+*.log
+logs/
+tmp/

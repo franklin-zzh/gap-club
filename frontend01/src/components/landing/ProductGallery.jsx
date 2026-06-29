@@ -15,7 +15,17 @@ const DEFAULT_PRODUCTS = [
 ];
 
 export default function ProductGallery({ products, loading }) {
-  const displayProducts = products && products.length > 0 ? products : DEFAULT_PRODUCTS;
+  // Map backend field names to what ProductCard expects
+  const displayProducts = (Array.isArray(products) && products.length > 0
+    ? products.map(p => ({
+        ...p,
+        target_audience: p.target_audience || p.target_group || '',
+        bio_markers: p.bio_markers || p.tags || [],
+        category: p.category || 'growth',
+        order: p.order ?? p.order_index ?? 0,
+      }))
+    : DEFAULT_PRODUCTS
+  );
 
   return (
     <section id="products" className="relative py-32 md:py-40" style={{ background: '#FDFBF7' }}>
