@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Brain, Workflow, Microscope } from 'lucide-react';
 
-const TECH_IMG = 'https://media.base44.com/images/public/6a3ceb81f16bfca94f3c8790/cc7aa8be5_generated_image.png';
+const TECH_IMG = '/images/tech_procedure.png';
 
 const TECH_BLOCKS = [
   {
@@ -61,10 +61,10 @@ export default function TechSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative rounded-[32px] overflow-hidden h-80"
+            className="relative rounded-[32px] overflow-hidden aspect-square"
             style={{ border: '1px solid #E8D5B7' }}
           >
-            <img src={TECH_IMG} alt="AI神经网络" className="w-full h-full object-cover" />
+            <img src={TECH_IMG} alt="技术流程图" className="w-full h-full object-cover" />
             <div className="absolute inset-0 flex items-end p-8" style={{ background: 'linear-gradient(to top, rgba(44,44,44,0.6), transparent)' }}>
               <div>
                 <div className="text-xs tracking-[0.2em] uppercase text-white opacity-80 mb-1">AI Neural Network</div>
