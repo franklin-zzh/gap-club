@@ -24,7 +24,7 @@ export default function Dashboard() {
         subscriptionsApi.getMine().catch(() => null),
       ]);
       setProfile(prof);
-      setSubmissionsList(subs);
+      setSubmissionsList(Array.isArray(subs) ? subs : []);
       setSubscription(subscr);
     } catch (e) {
       console.error(e);

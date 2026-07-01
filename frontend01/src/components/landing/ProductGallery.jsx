@@ -54,7 +54,19 @@ export default function ProductGallery({ products, loading }) {
 
   return (
     <section id="products" className="relative py-20 md:py-28" style={{ background: '#FDFBF7' }}>
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Running header */}
+        <div className="mb-12 md:mb-16">
+          <div style={{ height: '0.5px', width: '100%', background: '#D4A373' }} />
+          <div className="flex items-center justify-between mt-2">
+            <span className="text-[11px] tracking-[0.25em] uppercase font-light" style={{ color: '#8E9E8A' }}>
+              01 / NUTRITION
+            </span>
+            <span className="text-[11px] tracking-[0.25em] uppercase font-light" style={{ color: '#8E9E8A' }}>
+              FMT GAP CLUB
+            </span>
+          </div>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

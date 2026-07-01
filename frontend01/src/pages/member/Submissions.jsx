@@ -27,7 +27,7 @@ export default function Submissions() {
   const loadSubmissions = async () => {
     try {
       const subs = await submissionsApi.list();
-      setSubmissions(subs);
+      setSubmissions(Array.isArray(subs) ? subs : []);
     } catch (e) {
       console.error(e);
     } finally {

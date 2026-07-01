@@ -13,9 +13,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: '产品', href: '#products' },
-    { label: '技术', href: '#technology' },
-    { label: '知识库', href: '#knowledge' },
+    { label: '产品', href: '#products', isRoute: false },
+    { label: '技术', href: '#technology', isRoute: false },
+    { label: '知识库', href: '/knowledge-base', isRoute: true },
   ];
 
   return (
@@ -23,7 +23,7 @@ export default function Navbar() {
       <div
         className="flex items-center justify-between gap-6 px-5 py-3 rounded-full transition-all duration-500"
         style={{
-          background: scrolled ? 'rgba(253, 251, 247, 0.88)' : 'rgba(253, 251, 247, 0.5)',
+          background: scrolled ? 'rgba(250, 248, 243, 0.38)' : 'rgba(250, 248, 243, 0.4)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           border: '1px solid #E8D5B7',
@@ -42,14 +42,25 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium transition-colors hover:opacity-60"
-              style={{ color: '#2C2C2C' }}
-            >
-              {link.label}
-            </a>
+            link.isRoute ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm font-medium transition-colors hover:opacity-60"
+                style={{ color: '#2C2C2C' }}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium transition-colors hover:opacity-60"
+                style={{ color: '#2C2C2C' }}
+              >
+                {link.label}
+              </a>
+            )
           ))}
         </div>
 
@@ -78,15 +89,27 @@ export default function Navbar() {
           }}
         >
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="text-sm font-medium"
-              style={{ color: '#2C2C2C' }}
-            >
-              {link.label}
-            </a>
+            link.isRoute ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-medium"
+                style={{ color: '#2C2C2C' }}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-medium"
+                style={{ color: '#2C2C2C' }}
+              >
+                {link.label}
+              </a>
+            )
           ))}
           <Link
             to="/register"

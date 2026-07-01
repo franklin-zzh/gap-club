@@ -17,7 +17,7 @@ export default function Reports() {
     try {
       // Show completed submissions as reports (they contain AI recommendations)
       const subs = await submissionsApi.list();
-      setReports(subs.filter(s => s.status === 'completed' || s.recommendations?.length > 0));
+      setReports(Array.isArray(subs) ? subs.filter(s => s.status === 'completed' || s.recommendations?.length > 0) : []);
     } catch (e) {
       console.error(e);
     } finally {
